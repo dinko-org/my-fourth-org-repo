@@ -61,10 +61,10 @@ jobs:
       RESOURCE_GROUP: ${{ inputs.az_resource_group }}
       TF_KEY: ${{ inputs.tf_key }}.tfstate
       ###AZURE Client details###
-      ARM_CLIENT_ID: ${{ secrets.arm_client_id }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
    #   ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
-      ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
   
     steps:
       - name: Download Artifact
