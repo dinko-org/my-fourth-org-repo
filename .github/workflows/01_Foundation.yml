@@ -21,7 +21,7 @@ jobs:
       enable_TFSEC: true                          
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+    #  arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
 
@@ -37,6 +37,6 @@ jobs:
       gh_environment: Production
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+   #   arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
