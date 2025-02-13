@@ -9,7 +9,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_plan.yml@master
+    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_plan.yml@main
     with:
       path: 01_Foundation
       tf_version: latest
@@ -27,7 +27,7 @@ jobs:
 
   Deploy_Prod:
     needs: [Plan_Prod]
-    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_apply.yml@master
+    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_apply.yml@main
     with:
       path: 01_Foundation
       az_resource_group: rg-dinko
