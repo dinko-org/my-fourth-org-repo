@@ -80,17 +80,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
-      - name: Scan IaC - tfsec
-        if: ${{ inputs.ENABLE_TFSEC == 'true' }}
-        uses: aquasecurity/tfsec-sarif-action@v0.1.4
+      - name: Azure Login
+        uses: azure/login@v1
         with:
-          sarif_file: tfsec.sarif         
-
-      - name: Upload SARIF file
-        if: ${{ inputs.ENABLE_TFSEC == 'true' }}
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: tfsec.sarif  
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3.1.2
