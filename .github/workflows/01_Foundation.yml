@@ -1,0 +1,42 @@
+name: "01_Foundation"
+on:
+  workflow_dispatch:
+
+jobs:
+  
+  Plan_Prod:
+    permissions:   #Permission is required if enabling TFSEC == true
+      actions: read
+      contents: read
+      security-events: write
+    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: 01_Foundation
+      tf_version: latest
+      az_resource_group: rg-dinko
+      az_storage_acc: tfstatefiledinko
+      az_container_name: tfstatefiles
+      tf_key: foundation-prod
+      tf_vars_file: config-prod.tfvars
+      enable_TFSEC: true                          
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+
+  Deploy_Prod:
+    needs: [Plan_Prod]
+    uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_apply.yml@master
+    with:
+      path: 01_Foundation
+      az_resource_group: rg-dinko
+      az_storage_acc: tfstatefiledinko
+      az_container_name: tfstatefiles
+      tf_key: foundation-prod
+      gh_environment: Production
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
