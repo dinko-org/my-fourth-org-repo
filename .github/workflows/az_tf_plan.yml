@@ -112,19 +112,37 @@ jobs:
         id: validate
         run: terraform validate
 
-      - name: Terraform Plan
+    #  - name: Terraform Plan
+     #   id: plan
+     #   run: terraform plan -detailed-exitcode --var-file=$TF_VARS --out=plan.tfplan
+     #   continue-on-error: true
+
+      - name: Terraform plan
         id: plan
-        run: terraform plan -detailed-exitcode --var-file=$TF_VARS --out=plan.tfplan
-        continue-on-error: true
+        run: |
+          set +e
+          terraform plan -detailed-exitcode -input=false -out=tfplan
+          exit_code=$?
+          set -e
+          if [ $exit_code -eq 2 ]; then
+            echo "There are pending changes."
+            exit 0
+          elif [ $exit_code -eq 0 ]; then
+            echo "No changes detected in the Terraform plan."
+            exit 0
+          else
+            echo "Terraform plan failed."
+            exit 1
+          fi
+
+      - name: Notify failure
+        if: ${{ failure() }}
+        run: |
+          echo "Pipeline failed."
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
-        run: exit 1
-        
-      - name: Terraform Plan Status
-        if: ${{ OtherConditions && needs.plan.outputs.exit-code == 0 }}
-        run: exit 1
-      
+        run: exit 1  
 
       - name: Compress TF Plan artifact
         run: zip -r ${{ inputs.tf_key }}.zip ./*
