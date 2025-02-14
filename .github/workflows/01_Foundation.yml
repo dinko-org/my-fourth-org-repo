@@ -38,7 +38,7 @@ jobs:
     with:
       path: 01_Foundation
       az_resource_group: rg-dinko
-      az_storage_acc: tfstatefiledinko
+      az_storage_acc: newtfstatefiledinko
       az_container_name: tfstatefiles
       tf_key: foundation-prod
       gh_environment: Production
