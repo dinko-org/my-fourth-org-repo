@@ -33,6 +33,10 @@ jobs:
       azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
 
   Deploy_Prod:
+    permissions:   #Permission is required if enabling TFSEC == true
+      id-token: write
+      actions: read
+      contents: read
     needs: [Plan_Prod]
     uses: dinko-org/my-fourth-org-repo/.github/workflows/az_tf_apply.yml@main
     with:
