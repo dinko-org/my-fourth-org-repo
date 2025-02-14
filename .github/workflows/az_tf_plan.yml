@@ -43,16 +43,16 @@ on:
         type: boolean
         default: false
     secrets:
-      azure_client_id:
+      AZURE_CLIENT_ID:
         description: 'Specifies the Azure ARM CLIENT ID.'
         required: true
    #   arm_client_secret:
   #      description: 'Specifies the Azure ARM CLIENT SECRET.'
    #     required: true
-      azure_subscription_id:
+      AZURE_SUBSCRIPTION_ID:
         description: 'Specifies the Azure ARM SUBSCRIPTION ID.'
         required: true
-      azure_tenant_id:
+      AZURE_TENANT_ID:
         description: 'Specifies the Azure ARM TENANT ID.'
         required: true
 
