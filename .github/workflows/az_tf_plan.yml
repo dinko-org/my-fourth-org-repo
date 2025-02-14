@@ -42,19 +42,19 @@ on:
         required: false
         type: boolean
         default: false
-    secrets:
-      AZURE_CLIENT_ID:
-        description: 'Specifies the Azure ARM CLIENT ID.'
-        required: true
+#    secrets:
+#      AZURE_CLIENT_ID:
+ #       description: 'Specifies the Azure ARM CLIENT ID.'
+ #       required: true
    #   arm_client_secret:
   #      description: 'Specifies the Azure ARM CLIENT SECRET.'
    #     required: true
-      AZURE_SUBSCRIPTION_ID:
-        description: 'Specifies the Azure ARM SUBSCRIPTION ID.'
-        required: true
-      AZURE_TENANT_ID:
-        description: 'Specifies the Azure ARM TENANT ID.'
-        required: true
+ #     AZURE_SUBSCRIPTION_ID:
+ #       description: 'Specifies the Azure ARM SUBSCRIPTION ID.'
+ #       required: true
+ #     AZURE_TENANT_ID:
+ #       description: 'Specifies the Azure ARM TENANT ID.'
+ #       required: true
 
 jobs:
   build-plan:
