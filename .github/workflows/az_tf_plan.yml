@@ -114,7 +114,7 @@ jobs:
 
     #  - name: Terraform Plan
      #   id: plan
-     #   run: terraform plan -detailed-exitcode --var-file=$TF_VARS --out=plan.tfplan
+     #   run: terraform plan --var-file=$TF_VARS --out=plan.tfplan --detailed-exitcode
      #   continue-on-error: true
 
       - name: Terraform plan
